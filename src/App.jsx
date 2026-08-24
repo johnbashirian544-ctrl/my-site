@@ -29,11 +29,7 @@ function App() {
         <h1>
       Build Your
       <span> Digital Future.</span>
-       </h1>
-
-      <p className="hero-text">
-      RedZone Web creates modern, fast and responsive websites for businesses and creators.
-       </p>
+      </h1>
 
         <p className="hero-text">
           We create modern, fast and beautiful websites for businesses
@@ -114,10 +110,29 @@ function App() {
         <p>
           Have a project in mind? Get in touch with us and let's talk.
         </p>
+<form className="contact-form">
+  <input
+    type="text"
+    placeholder="Your Name"
+    required
+  />
 
-        <a href="mailto:hello@mysite.com" className="primary-button">
-          Contact Us →
-        </a>
+  <input
+    type="email"
+    placeholder="Your Email"
+    required
+  />
+
+  <textarea
+    placeholder="Your Message"
+    rows="5"
+    required
+  ></textarea>
+
+  <button type="submit" className="primary-button">
+    Send Message →
+  </button>
+</form>
       </section>
 
       {/* Footer */}

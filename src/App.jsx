@@ -1,7 +1,10 @@
 import { motion } from "motion/react";
+import { useForm } from "@formspree/react";
 import "./App.css";
 
 function App() {
+  const [state, handleSubmit] = useForm("mwlejzdz");
+
   return (
     <div className="app">
 
@@ -24,16 +27,17 @@ function App() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-      >  <p className="small-title">WELCOME TO REDZONE WEB</p>
+      >
+        <p className="small-title">WELCOME TO REDZONE WEB</p>
 
         <h1>
-      Build Your
-      <span> Digital Future.</span>
-      </h1>
+          Build Your
+          <span> Digital Future.</span>
+        </h1>
 
         <p className="hero-text">
-          We create modern, fast and beautiful websites for businesses
-          and creators.
+          RedZone Web creates modern, fast and responsive websites for
+          businesses and creators.
         </p>
 
         <div className="hero-buttons">
@@ -47,13 +51,13 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Features */}
+      {/* Services */}
       <section className="features" id="services">
         <p className="small-title">OUR SERVICES</p>
+
         <h2>What We Offer</h2>
 
         <div className="feature-grid">
-
           <div className="feature-card">
             <div className="feature-icon">⚡</div>
             <h3>Fast</h3>
@@ -77,7 +81,6 @@ function App() {
               Your website looks great on mobile, tablet and desktop.
             </p>
           </div>
-
         </div>
       </section>
 
@@ -92,7 +95,8 @@ function App() {
 
           <p>
             We focus on creating fast, modern and easy-to-use websites.
-            Our goal is to give every business a professional online presence.
+            Our goal is to give every business a professional online
+            presence.
           </p>
 
           <a href="#contact" className="primary-button">
@@ -110,29 +114,55 @@ function App() {
         <p>
           Have a project in mind? Get in touch with us and let's talk.
         </p>
-<form className="contact-form">
-  <input
-    type="text"
-    placeholder="Your Name"
-    required
-  />
 
-  <input
-    type="email"
-    placeholder="Your Email"
-    required
-  />
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
 
-  <textarea
-    placeholder="Your Message"
-    rows="5"
-    required
-  ></textarea>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+          />
 
-  <button type="submit" className="primary-button">
-    Send Message →
-  </button>
-</form>
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            required
+          ></textarea>
+
+          <input
+            type="hidden"
+            name="_subject"
+            value="New message from RedZone Web"
+          />
+
+          <button
+            type="submit"
+            className="primary-button"
+            disabled={state.submitting}
+          >
+            {state.submitting ? "Sending..." : "Send Message →"}
+          </button>
+
+          {state.succeeded && (
+            <p className="form-success">
+              ✅ Message sent successfully!
+            </p>
+          )}
+
+          {state.errors && (
+            <p className="form-error">
+              ❌ Something went wrong. Please try again.
+            </p>
+          )}
+        </form>
       </section>
 
       {/* Footer */}
